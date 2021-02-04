@@ -1,0 +1,63 @@
+object frmMain: TfrmMain
+  Left = 338
+  Height = 357
+  Top = 250
+  Width = 562
+  Caption = 'Download Progess Bar v0.1'
+  ClientHeight = 357
+  ClientWidth = 562
+  object panMain: TPanel
+    Left = 0
+    Height = 144
+    Top = 0
+    Width = 562
+    Align = alTop
+    ClientHeight = 144
+    ClientWidth = 562
+    TabOrder = 0
+    object lblURL: TLabel
+      Left = 8
+      Height = 17
+      Top = 8
+      Width = 27
+      Caption = 'URL'
+      ParentColor = False
+    end
+    object pbMain: TProgressBar
+      Left = 8
+      Height = 20
+      Top = 104
+      Width = 536
+      Anchors = [akTop, akLeft, akRight]
+      Smooth = True
+      TabOrder = 0
+    end
+    object btnDownload: TButton
+      Left = 8
+      Height = 25
+      Top = 72
+      Width = 75
+      Caption = '&Download'
+      OnClick = btnDownloadClick
+      TabOrder = 1
+    end
+    object edtURL: TEdit
+      Left = 8
+      Height = 33
+      Top = 32
+      Width = 536
+      Anchors = [akTop, akLeft, akRight]
+      TabOrder = 2
+      Text = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv'
+    end
+  end
+  object memLog: TMemo
+    Left = 0
+    Height = 213
+    Top = 144
+    Width = 562
+    Align = alClient
+    ScrollBars = ssAutoVertical
+    TabOrder = 1
+  end
+end
