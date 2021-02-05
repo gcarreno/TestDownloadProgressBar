@@ -18,9 +18,10 @@ type
   TfrmSequencial = class(TForm)
     lblTop: TLabel;
     lblDownloads: TLabel;
-    lblBytes: TLabel;
     pbDownloads: TProgressBar;
+    lblBytes: TLabel;
     pbBytes: TProgressBar;
+
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -78,7 +79,16 @@ begin
   begin
     lblTop.Caption:= Format('File: %s',[FDownloads[index].Filename]);
     lblDownloads.Caption:= Format('%d of %d', [index + 1, Length(FDownloads)]);
-    DoDownload(index);
+    Application.ProcessMessages;
+    try
+      DoDownload(index);
+    except
+      on E: Exception do
+      begin
+        { #todo 1 -ogcarreno : Inform about error }
+        break;
+      end;
+    end;
     pbDownloads.Position:= index + 1;
     Application.ProcessMessages;
   end;

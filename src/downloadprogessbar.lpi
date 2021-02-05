@@ -16,6 +16,12 @@
       </XPManifest>
       <Icon Value="0"/>
     </General>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <MajorVersionNr Value="1"/>
+      <MinorVersionNr Value="2"/>
+      <Language Value="0809"/>
+    </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
     </BuildModes>
@@ -31,7 +37,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="6">
       <Unit0>
         <Filename Value="downloadprogessbar.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -54,9 +60,22 @@
         <Filename Value="forms/dpb.forms.sequencial.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmSequencial"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="DPB.Forms.Sequencial"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="common/dpb.common.threads.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DPB.Common.Threads"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="forms/dpb.forms.threadsequential.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmThreadSequential"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="DPB.Forms.ThreadSequential"/>
+      </Unit5>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

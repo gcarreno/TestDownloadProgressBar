@@ -37,12 +37,15 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    actDownloadThreadSequential: TAction;
     alMain: TActionList;
     actDownloadSequencial: TAction;
+    btnThreadSequential: TButton;
     panMain: TPanel;
     btnSequencial: TButton;
     memLog: TMemo;
     procedure actDownloadSequencialExecute(Sender: TObject);
+    procedure actDownloadThreadSequentialExecute(Sender: TObject);
   private
     procedure Log(const AMessage: String);
   public
@@ -56,6 +59,7 @@ implementation
 
 uses
   DPB.Forms.Sequencial
+, DPB.Forms.ThreadSequential
 ;
 
 {$R *.lfm}
@@ -102,6 +106,49 @@ begin
     Log('Done.');
   finally
     actDownloadSequencial.Enabled:= True;
+  end;
+end;
+
+procedure TfrmMain.actDownloadThreadSequentialExecute(Sender: TObject);
+var
+  frmThreadSeq: TfrmThreadSequential;
+begin
+  actDownloadThreadSequential.Enabled:= False;
+  try
+    Log('Performing Threaded Sequencial download.');
+    Log('  Creating form.');
+    frmThreadSeq:= TfrmThreadSequential.Create(nil);
+
+    Log('  Adding: time_series_covid19_confirmed_global.csv');
+    frmThreadSeq.AddDownload(
+      'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv',
+      'time_series_covid19_confirmed_global.csv');
+
+    Log('  Adding: time_series_covid19_deaths_global.csv');
+    frmThreadSeq.AddDownload(
+      'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv',
+      'time_series_covid19_recovered_global.csv');
+
+    Log('  Adding: time_series_covid19_deaths_global.csv');
+    frmThreadSeq.AddDownload(
+      'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv',
+      'time_series_covid19_recovered_global.csv');
+
+    Log('  Adding: time_series_covid19_confirmed_US.csv');
+    frmThreadSeq.AddDownload(
+      'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv',
+      'time_series_covid19_confirmed_US.csv');
+
+    Log('  Adding: time_series_covid19_deaths_US.csv');
+    frmThreadSeq.AddDownload(
+      'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv',
+      'time_series_covid19_deaths_US.csv');
+
+    Log('  Calling Show Modal.');
+    frmThreadSeq.ShowModal;
+    Log('Done.');
+  finally
+    actDownloadThreadSequential.Enabled:= True;
   end;
 end;
 

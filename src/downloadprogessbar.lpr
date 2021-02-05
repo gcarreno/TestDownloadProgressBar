@@ -34,7 +34,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, DPB.Forms.Main
+  Forms, DPB.Forms.Main, DPB.Forms.ThreadSequential
   { you can add units after this };
 
 {$R *.res}
@@ -45,6 +45,7 @@ begin
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmThreadSequential, frmThreadSequential);
   Application.Run;
 end.
 
