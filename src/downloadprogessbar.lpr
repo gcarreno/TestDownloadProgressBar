@@ -41,6 +41,7 @@ uses
 
 begin
   RequireDerivedFormResource:=True;
+  Application.Title:='DownloadProgessBar';
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);

@@ -31,7 +31,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="4">
       <Unit0>
         <Filename Value="downloadprogessbar.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -50,6 +50,13 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="DPB.Common.Utils"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="forms/dpb.forms.sequencial.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmSequencial"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="DPB.Forms.Sequencial"/>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
