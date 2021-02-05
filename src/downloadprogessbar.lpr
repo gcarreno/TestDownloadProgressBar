@@ -1,4 +1,4 @@
-program downloadprogesssbar;
+program DownloadProgessBar;
 
 {$mode objfpc}{$H+}
 

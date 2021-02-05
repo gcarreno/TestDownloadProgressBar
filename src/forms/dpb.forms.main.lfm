@@ -6,6 +6,7 @@ object frmMain: TfrmMain
   Caption = 'Download Progess Bar v0.1'
   ClientHeight = 357
   ClientWidth = 562
+  LCLVersion = '2.1.0.0'
   object panMain: TPanel
     Left = 0
     Height = 144

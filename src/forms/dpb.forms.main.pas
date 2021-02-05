@@ -23,7 +23,6 @@ type
   private
     FSize: Int64;
     procedure Log(const AMessage: String);
-    function FormatBytes(ABytes: Int64): String;
     procedure DataReceived(Sender : TObject; Const ContentLength, CurrentPos : Int64);
   public
 
@@ -37,6 +36,7 @@ implementation
 uses
   fphttpclient
 , opensslsockets
+, DPB.Common.Utils
 ;
 
 {$R *.lfm}
@@ -92,42 +92,6 @@ procedure TfrmMain.Log(const AMessage: String);
 begin
   memLog.Append(AMessage);
   Application.ProcessMessages;
-end;
-
-function TfrmMain.FormatBytes(ABytes: Int64): String;
-var
-  dSize: Double;
-begin
-  Result := '';
-  dSize := 0.0;
-  if ABytes < 1024 then
-  begin
-    Result := IntToStr(ABytes) + ' B';
-    exit;
-  end;
-  if ABytes < (1024*1024) then
-  begin
-    dSize := ABytes / 1024;
-    Result := FormatFloat('0.##', dSize) + ' KB';
-    exit;
-  end;
-  if ABytes < (1024*1024*1024) then
-  begin
-    dSize := ABytes / 1024 / 1024;
-    Result := FormatFloat('0.##', dSize) + ' MB';
-    exit;
-  end;
-  if ABytes < (1024*1024*1024*1024) then
-  begin
-    dSize := ABytes / 1024 / 1024 / 1024;
-    Result := FormatFloat('0.##', dSize) + 'GB';
-    exit;
-  end;
-  if ABytes < (1024*1024*1024*1024*1024) then
-  begin
-    dSize := ABytes / 1024 / 1024 / 1024 / 1024;
-    Result := FormatFloat('0.##', dSize) + ' TB';
-  end;
 end;
 
 procedure TfrmMain.DataReceived(Sender: TObject; const ContentLength,
