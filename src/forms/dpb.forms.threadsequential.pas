@@ -121,7 +121,7 @@ begin
     Application.ProcessMessages;
   end;
   FAllDone:= True;
-  //Close;
+  Close;
 end;
 
 procedure TfrmThreadSequential.AddDownload(const AURL, AFilename: String);

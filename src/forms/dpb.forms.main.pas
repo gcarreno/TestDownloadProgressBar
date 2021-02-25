@@ -47,9 +47,8 @@ type
     procedure actDownloadSequencialExecute(Sender: TObject);
     procedure actDownloadThreadSequentialExecute(Sender: TObject);
   private
-    procedure Log(const AMessage: String);
   public
-
+    procedure Log(const AMessage: String);
   end;
 
 var
