@@ -163,7 +163,6 @@ begin
       lblBytes.Caption:= 'Determining size...';
       Application.ProcessMessages;
       http.HTTPMethod('HEAD', FDownloads[AIndex].URL, nil, []);
-      //TFPHTTPClient.Head(FDownloads[AIndex].URL, headers);
       FSize := 0;
       for index := 0 to Pred(http.ResponseHeaders.Count) do
       begin

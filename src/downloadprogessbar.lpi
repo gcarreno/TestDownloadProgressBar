@@ -73,6 +73,7 @@
         <Filename Value="forms/dpb.forms.threadsequential.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmThreadSequential"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="DPB.Forms.ThreadSequential"/>
       </Unit5>

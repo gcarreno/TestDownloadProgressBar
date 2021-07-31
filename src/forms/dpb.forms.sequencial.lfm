@@ -13,6 +13,7 @@ object frmSequencial: TfrmSequencial
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   Position = poDesktopCenter
+  LCLVersion = '2.1.0.0'
   object lblDownloads: TLabel
     Left = 16
     Height = 17
