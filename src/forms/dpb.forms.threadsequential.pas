@@ -103,13 +103,13 @@ begin
     lblDownloads.Caption:= Format('%d of %d', [index + 1, Length(FDownloads)]);
     Application.ProcessMessages;
     try
-      //DoDownload(index);
       dlThread:= TDownloadThread.Create(True);
       dlThread.OnShowStatus:= @ShowStatus;
       dlThread.URL:= FDownloads[index].URL;
       dlThread.Filename:= FDownloads[index].Filename;
       dlThread.Start;
       dlThread.WaitFor;
+      FreeAndNil(dlThread);
     except
       on E: Exception do
       begin

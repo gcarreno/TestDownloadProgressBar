@@ -140,7 +140,6 @@ begin
   try
     try
       http.HTTPMethod('HEAD', FURL, nil, []);
-      //TFPHTTPClient.Head(FURL, headers);
       FSize := 0;
       for index := 0 to Pred(http.ResponseHeaders.Count) do
       begin

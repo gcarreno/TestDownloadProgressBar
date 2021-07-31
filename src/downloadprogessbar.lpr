@@ -41,11 +41,10 @@ uses
 
 begin
   RequireDerivedFormResource:=True;
-  Application.Title:='DownloadProgessBar';
-  Application.Scaled:=True;
+  Application.Title:= 'DownloadProgessBar';
+  Application.Scaled:= True;
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TfrmThreadSequential, frmThreadSequential);
   Application.Run;
 end.
 
