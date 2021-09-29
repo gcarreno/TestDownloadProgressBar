@@ -3,7 +3,7 @@ object frmMain: TfrmMain
   Height = 357
   Top = 250
   Width = 562
-  Caption = 'Download Progess Bar v1.2.7'
+  Caption = 'Download Progess Bar v1.4.8'
   ClientHeight = 357
   ClientWidth = 562
   OnCreate = FormCreate
