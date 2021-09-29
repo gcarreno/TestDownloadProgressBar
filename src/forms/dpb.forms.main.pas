@@ -30,7 +30,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  ComCtrls, ActnList;
+  ComCtrls, ActnList, StdActns;
 
 type
 
@@ -41,13 +41,17 @@ type
     alMain: TActionList;
     actDownloadSequencial: TAction;
     btnThreadSequential: TButton;
+    actFileExit: TFileExit;
+    btnFileExit: TButton;
     panMain: TPanel;
     btnSequencial: TButton;
     memLog: TMemo;
     procedure actDownloadSequencialExecute(Sender: TObject);
     procedure actDownloadThreadSequentialExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
   public
+    procedure InitShortcuts;
     procedure Log(const AMessage: String);
   end;
 
@@ -57,9 +61,17 @@ var
 implementation
 
 uses
-  DPB.Forms.Sequencial
+  LCLType
+, DPB.Forms.Sequencial
 , DPB.Forms.ThreadSequential
 ;
+
+const
+{$IFDEF MSWINDOWS}
+  CPaddingToTestMinimizeName = 'C:\Users\User\Downloads\TestDownloadProgressBar\';
+{$ELSE}
+  CPaddingToTestMinimizeName = '/home/user/Downloads/TestDownloadProgressBar/';
+{$ENDIF}
 
 {$R *.lfm}
 
@@ -70,6 +82,9 @@ var
   frmSeq: TfrmSequencial;
 begin
   actDownloadSequencial.Enabled:= False;
+  actDownloadThreadSequential.Enabled:= False;
+  actFileExit.Enabled:= False;
+  Application.ProcessMessages;
   try
     Log('Performing Sequencial download.');
     Log('  Creating form.');
@@ -78,33 +93,36 @@ begin
     Log('  Adding: time_series_covid19_confirmed_global.csv');
     frmSeq.AddDownload(
       'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv',
-      'time_series_covid19_confirmed_global.csv');
+      CPaddingToTestMinimizeName + 'time_series_covid19_confirmed_global.csv');
 
     Log('  Adding: time_series_covid19_deaths_global.csv');
     frmSeq.AddDownload(
       'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv',
-      'time_series_covid19_recovered_global.csv');
+      CPaddingToTestMinimizeName + 'time_series_covid19_recovered_global.csv');
 
     Log('  Adding: time_series_covid19_deaths_global.csv');
     frmSeq.AddDownload(
       'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv',
-      'time_series_covid19_recovered_global.csv');
+      CPaddingToTestMinimizeName + 'time_series_covid19_recovered_global.csv');
 
     Log('  Adding: time_series_covid19_confirmed_US.csv');
     frmSeq.AddDownload(
       'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv',
-      'time_series_covid19_confirmed_US.csv');
+      CPaddingToTestMinimizeName + 'time_series_covid19_confirmed_US.csv');
 
     Log('  Adding: time_series_covid19_deaths_US.csv');
     frmSeq.AddDownload(
       'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv',
-      'time_series_covid19_deaths_US.csv');
+      CPaddingToTestMinimizeName + 'time_series_covid19_deaths_US.csv');
 
     Log('  Calling Show Modal.');
     frmSeq.ShowModal;
     Log('Done.');
   finally
+    Application.ProcessMessages;
     actDownloadSequencial.Enabled:= True;
+    actDownloadThreadSequential.Enabled:= True;
+    actFileExit.Enabled:= True;
   end;
 end;
 
@@ -112,7 +130,10 @@ procedure TfrmMain.actDownloadThreadSequentialExecute(Sender: TObject);
 var
   frmThreadSeq: TfrmThreadSequential;
 begin
+  actDownloadSequencial.Enabled:= False;
   actDownloadThreadSequential.Enabled:= False;
+  actFileExit.Enabled:= False;
+  Application.ProcessMessages;
   try
     Log('Performing Threaded Sequencial download.');
     Log('  Creating form.');
@@ -121,40 +142,58 @@ begin
     Log('  Adding: time_series_covid19_confirmed_global.csv');
     frmThreadSeq.AddDownload(
       'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv',
-      'time_series_covid19_confirmed_global.csv');
+      CPaddingToTestMinimizeName + 'time_series_covid19_confirmed_global.csv');
 
     Log('  Adding: time_series_covid19_deaths_global.csv');
     frmThreadSeq.AddDownload(
       'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv',
-      'time_series_covid19_recovered_global.csv');
+      CPaddingToTestMinimizeName + 'time_series_covid19_recovered_global.csv');
 
     Log('  Adding: time_series_covid19_deaths_global.csv');
     frmThreadSeq.AddDownload(
       'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv',
-      'time_series_covid19_recovered_global.csv');
+      CPaddingToTestMinimizeName + 'time_series_covid19_recovered_global.csv');
 
     Log('  Adding: time_series_covid19_confirmed_US.csv');
     frmThreadSeq.AddDownload(
       'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv',
-      'time_series_covid19_confirmed_US.csv');
+      CPaddingToTestMinimizeName + 'time_series_covid19_confirmed_US.csv');
 
     Log('  Adding: time_series_covid19_deaths_US.csv');
     frmThreadSeq.AddDownload(
       'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv',
-      'time_series_covid19_deaths_US.csv');
+      CPaddingToTestMinimizeName + 'time_series_covid19_deaths_US.csv');
 
     Log('  Calling Show Modal.');
     frmThreadSeq.ShowModal;
     Log('Done.');
   finally
+    Application.ProcessMessages;
+    actDownloadSequencial.Enabled:= True;
     actDownloadThreadSequential.Enabled:= True;
+    actFileExit.Enabled:= True;
   end;
+end;
+
+procedure TfrmMain.InitShortcuts;
+begin
+{$IFDEF LINUX}
+  actFileExit.ShortCut := KeyToShortCut(VK_Q, [ssCtrl]);
+{$ENDIF}
+{$IFDEF WINDOWS}
+  actFileExit.ShortCut := KeyToShortCut(VK_X, [ssAlt]);
+{$ENDIF}
 end;
 
 procedure TfrmMain.Log(const AMessage: String);
 begin
   memLog.Append(AMessage);
   Application.ProcessMessages;
+end;
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+  InitShortcuts;
 end;
 
 end.

@@ -1,59 +1,78 @@
 object frmSequencial: TfrmSequencial
   Left = 330
-  Height = 162
+  Height = 150
   Top = 250
-  Width = 485
+  Width = 600
   BorderIcons = []
   BorderStyle = bsDialog
   Caption = 'Sequencial'
-  ClientHeight = 162
-  ClientWidth = 485
+  ClientHeight = 150
+  ClientWidth = 600
+  Constraints.MinHeight = 150
+  Constraints.MinWidth = 600
   OnActivate = FormActivate
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
-  Position = poDesktopCenter
-  LCLVersion = '2.1.0.0'
+  Position = poScreenCenter
   object lblDownloads: TLabel
     Left = 16
-    Height = 17
-    Top = 32
-    Width = 37
+    Height = 15
+    Top = 31
+    Width = 568
+    Align = alTop
+    BorderSpacing.Left = 16
+    BorderSpacing.Top = 8
+    BorderSpacing.Right = 16
     Caption = '0 of 0'
     ParentColor = False
   end
   object pbDownloads: TProgressBar
     Left = 16
     Height = 20
-    Top = 56
-    Width = 457
-    Anchors = [akTop, akLeft, akRight]
+    Top = 54
+    Width = 568
+    Align = alTop
+    BorderSpacing.Left = 16
+    BorderSpacing.Top = 8
+    BorderSpacing.Right = 16
     Smooth = True
     TabOrder = 0
   end
   object lblBytes: TLabel
     Left = 16
-    Height = 17
-    Top = 96
-    Width = 55
+    Height = 15
+    Top = 90
+    Width = 568
+    Align = alTop
+    BorderSpacing.Left = 16
+    BorderSpacing.Top = 16
+    BorderSpacing.Right = 16
     Caption = '0B of 0B'
     ParentColor = False
   end
   object pbBytes: TProgressBar
     Left = 16
     Height = 20
-    Top = 120
-    Width = 457
-    Anchors = [akTop, akLeft, akRight]
+    Top = 113
+    Width = 568
+    Align = alTop
+    BorderSpacing.Left = 16
+    BorderSpacing.Top = 8
+    BorderSpacing.Right = 16
     Smooth = True
     TabOrder = 1
   end
   object lblTop: TLabel
     Left = 16
-    Height = 17
+    Height = 15
     Top = 8
-    Width = 28
-    Caption = 'File:'
+    Width = 568
+    Align = alTop
+    BorderSpacing.Left = 16
+    BorderSpacing.Top = 8
+    BorderSpacing.Right = 16
+    Caption = '?'
     ParentColor = False
   end
 end

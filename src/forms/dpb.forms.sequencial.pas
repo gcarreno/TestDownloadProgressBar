@@ -83,6 +83,7 @@ uses
 , fpopenssl
 , openssl
 {$ENDIF}
+, FileCtrl
 , DPB.Forms.Main
 , DPB.Common.Utils
 ;
@@ -111,12 +112,19 @@ end;
 procedure TfrmSequencial.FormActivate(Sender: TObject);
 var
   index: Integer;
+  shortFilename: String;
 begin
+  OnActivate:= nil;
   Application.ProcessMessages;
   pbDownloads.Max:= Length(FDownloads);
   for index:= 0 to Pred(Length(FDownloads)) do
   begin
-    lblTop.Caption:= Format('File: %s',[FDownloads[index].Filename]);
+    shortFilename:= MiniMizeName(
+      FDownloads[index].Filename,
+      lblTop.Canvas,
+      lblTop.ClientWidth
+    );
+    lblTop.Caption:= shortFilename;
     lblDownloads.Caption:= Format('%d of %d', [index + 1, Length(FDownloads)]);
     Application.ProcessMessages;
     try
@@ -172,6 +180,7 @@ begin
         end;
       end;
       http.OnDataReceived:= @DataReceived;
+      // Discarding the actual content
       http.Get(FDownloads[AIndex].URL);
     except
       on E: Exception do

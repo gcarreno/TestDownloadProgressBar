@@ -3,40 +3,68 @@ object frmMain: TfrmMain
   Height = 357
   Top = 250
   Width = 562
-  Caption = 'Download Progess Bar v1.2'
+  Caption = 'Download Progess Bar v1.2.7'
   ClientHeight = 357
   ClientWidth = 562
+  OnCreate = FormCreate
   Position = poDesktopCenter
   object panMain: TPanel
     Left = 0
-    Height = 48
+    Height = 51
     Top = 0
     Width = 562
     Align = alTop
-    ClientHeight = 48
+    AutoSize = True
+    ClientHeight = 51
     ClientWidth = 562
     TabOrder = 0
     object btnSequencial: TButton
-      Left = 8
-      Height = 24
-      Top = 16
+      Left = 9
+      Height = 33
+      Top = 9
       Width = 158
       Action = actDownloadSequencial
+      Align = alLeft
+      AutoSize = True
+      BorderSpacing.Left = 8
+      BorderSpacing.Top = 8
+      BorderSpacing.Bottom = 8
+      Constraints.MinWidth = 70
       TabOrder = 0
     end
     object btnThreadSequential: TButton
-      Left = 176
-      Height = 25
-      Top = 16
+      Left = 175
+      Height = 33
+      Top = 9
       Width = 207
       Action = actDownloadThreadSequential
+      Align = alLeft
+      AutoSize = True
+      BorderSpacing.Left = 8
+      BorderSpacing.Top = 8
+      BorderSpacing.Bottom = 8
+      Constraints.MinWidth = 70
       TabOrder = 1
+    end
+    object btnFileExit: TButton
+      Left = 390
+      Height = 33
+      Top = 9
+      Width = 70
+      Action = actFileExit
+      Align = alLeft
+      AutoSize = True
+      BorderSpacing.Left = 8
+      BorderSpacing.Top = 8
+      BorderSpacing.Bottom = 8
+      Constraints.MinWidth = 70
+      TabOrder = 2
     end
   end
   object memLog: TMemo
     Left = 0
-    Height = 309
-    Top = 48
+    Height = 306
+    Top = 51
     Width = 562
     Align = alClient
     ReadOnly = True
@@ -55,6 +83,11 @@ object frmMain: TfrmMain
       Category = 'Download'
       Caption = 'Download Thread Sequential'
       OnExecute = actDownloadThreadSequentialExecute
+    end
+    object actFileExit: TFileExit
+      Category = 'File'
+      Caption = 'E&xit'
+      Hint = 'Exit'
     end
   end
 end

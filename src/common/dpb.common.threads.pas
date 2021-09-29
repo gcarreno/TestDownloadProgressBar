@@ -149,6 +149,7 @@ begin
         end;
       end;
       http.OnDataReceived:= @DataReceived;
+      // Discarding the actual content
       http.Get(FURL);
     except
       on E: Exception do
