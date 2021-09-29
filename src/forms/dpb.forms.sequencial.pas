@@ -112,19 +112,17 @@ end;
 procedure TfrmSequencial.FormActivate(Sender: TObject);
 var
   index: Integer;
-  shortFilename: String;
 begin
   OnActivate:= nil;
   Application.ProcessMessages;
   pbDownloads.Max:= Length(FDownloads);
   for index:= 0 to Pred(Length(FDownloads)) do
   begin
-    shortFilename:= MiniMizeName(
+    lblTop.Caption:= MiniMizeName(
       FDownloads[index].Filename,
       lblTop.Canvas,
       lblTop.ClientWidth
     );
-    lblTop.Caption:= shortFilename;
     lblDownloads.Caption:= Format('%d of %d', [index + 1, Length(FDownloads)]);
     Application.ProcessMessages;
     try
